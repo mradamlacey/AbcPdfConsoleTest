@@ -12,9 +12,11 @@ namespace AbcPdfConsoleTest
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello");
+            System.Console.WriteLine("Enter the name of the output pdf file:");
 
-            System.Console.Read();
+            var fileName = System.Console.ReadLine();
+            fileName = fileName.Replace(".pdf", "");
+            fileName = fileName.Replace(".PDF", "");
 
             Doc theDoc = new Doc();
             theDoc.Rect.Inset(72, 144);
@@ -38,7 +40,7 @@ namespace AbcPdfConsoleTest
                 theDoc.Flatten();
             }
 
-            theDoc.Save("c:\\src\\AbcPdfConsoleTest.pdf");
+            theDoc.Save(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName + ".pdf"));
             theDoc.Clear();
 
         }
